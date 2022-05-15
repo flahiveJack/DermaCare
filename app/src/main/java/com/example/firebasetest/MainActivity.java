@@ -1,29 +1,25 @@
 package com.example.firebasetest;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -55,7 +51,6 @@ import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp;
 import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
@@ -84,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
     Uri imageuri;
-    Button buclassify, next;
+    Button run, next;
 
-    TextView classitext;
+    TextView result1;
 
     private StorageReference storageReference;
     private FirebaseFirestore firestore;
@@ -118,9 +113,9 @@ public class MainActivity extends AppCompatActivity {
 
         imageView=(ImageView)findViewById(R.id.image);
         next=(Button)findViewById(R.id.goNext);
-        buclassify=(Button)findViewById(R.id.classify);
+        run=(Button)findViewById(R.id.runbtn);
         //prediction=(TextView)findViewById(R.id.predictions);
-        classitext=(TextView)findViewById(R.id.classifytext);
+        result1=(TextView)findViewById(R.id.resulttext);
         //mChart=findViewById(R.id.chart);
 
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -147,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //mProgressBar.setVisibility(View.VISIBLE);
-                String result = classitext.getText().toString();
+                String result = result1.getText().toString();
                 if (imageuri !=null){
                     StorageReference resultRef = storageReference.child("result_images").child(FieldValue.serverTimestamp().toString() + ".jpg");
                     resultRef.putFile(imageuri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -230,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        buclassify.setOnClickListener(new View.OnClickListener() {
+        run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -376,7 +371,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue()==maxValueInMap) {
-                classitext.setText(entry.getKey() + " " + maxValueInMap * 100 + "%");
+                result1.setText(entry.getKey() + " " + maxValueInMap * 100 + "%");
                 mChart.setProgress(maxValueInMap*100,true);
             }
 

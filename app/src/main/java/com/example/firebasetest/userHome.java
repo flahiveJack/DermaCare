@@ -1,12 +1,12 @@
 package com.example.firebasetest;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,6 +15,7 @@ public class userHome extends AppCompatActivity implements View.OnClickListener 
 
     public CardView card1, card2, card3, card4;
     FloatingActionButton Fab;
+    private Button scan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,8 @@ public class userHome extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_user_home);
 
         Fab = findViewById(R.id.fab);
+
+
 
         card1 = (CardView) findViewById(R.id.profileTV);
         card2 = (CardView) findViewById(R.id.results);
@@ -32,6 +35,23 @@ public class userHome extends AppCompatActivity implements View.OnClickListener 
         card2.setOnClickListener(this);
         card3.setOnClickListener(this);
         card4.setOnClickListener(this);
+
+        Fab.setClickable(true);
+
+
+        Fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(userHome.this, TakePhoto.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+
+
+       // scan.setOnClickListener();
     }
 
     @Override
@@ -65,15 +85,7 @@ public class userHome extends AppCompatActivity implements View.OnClickListener 
 
 
 
-        Fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(userHome.this, TakePhoto.class);
-                startActivity(intent);
 
-            }
-
-        });
 
 
 

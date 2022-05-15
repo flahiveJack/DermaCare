@@ -11,11 +11,11 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/classifytext"
+            android:id="@+id/resulttext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:text="Click below to select an image"
+
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -31,14 +31,15 @@
             android:layout_height="273dp"
             android:layout_marginTop="50dp"
             android:layout_centerInParent="true"
+            android:background="@color/browser_actions_bg_grey"
 
 
-            android:layout_alignTop="@id/classifytext">
+            android:layout_alignTop="@id/resulttext">
 
         </ImageView>
 
         <Button
-            android:id="@+id/classify"
+            android:id="@+id/runbtn"
             android:layout_width="300dp"
             android:layout_height="51dp"
             android:layout_below="@+id/image"
@@ -49,18 +50,18 @@
             android:layout_marginBottom="10dp"
 
 
-            android:text="Classify"
+            android:text="Run"
             />
 
         <Button
             android:id="@+id/goNext"
             android:layout_width="100dp"
             android:layout_height="80dp"
-            android:layout_below="@id/classify"
+            android:layout_below="@id/runbtn"
             android:layout_marginTop="15dp"
             android:layout_centerInParent="true"
 
-            android:text="Next"
+            android:text="save"
 
 
             />
