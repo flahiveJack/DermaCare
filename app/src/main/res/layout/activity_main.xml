@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/classifytext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Click below to select an image"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="50dp"
+            >
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="245dp"
+            android:layout_height="273dp"
+            android:layout_marginTop="50dp"
+            android:layout_centerInParent="true"
+
+
+            android:layout_alignTop="@id/classifytext">
+
+        </ImageView>
+
+        <Button
+            android:id="@+id/classify"
+            android:layout_width="300dp"
+            android:layout_height="51dp"
+            android:layout_below="@+id/image"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+
+
+            android:text="Classify"
+            />
+
+        <Button
+            android:id="@+id/goNext"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_below="@id/classify"
+            android:layout_marginTop="15dp"
+            android:layout_centerInParent="true"
+
+            android:text="Next"
+
+
+            />
+
+
+
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/bottom_sheet_dialog_layout" />
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
